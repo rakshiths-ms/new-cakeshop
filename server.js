@@ -3,12 +3,7 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-import { connectDB } from "./db.js";
-
-mongoose.connect("mongodb://localhost:27017/mydb")
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+import connectDB from "./db.js";
 
 dotenv.config();
 
@@ -18,7 +13,8 @@ const PORT = Number(process.env.PORT) || 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-connectDB().catch((err) => console.error("MongoDB connection error:", err?.message || err));
+// connect DB
+connectDB();
 
 app.use(cors());
 app.use(express.json());
