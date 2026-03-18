@@ -1,218 +1,100 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sweet Layers - Cake Shop</title>
-  <link rel="stylesheet" href="styles.css"  />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Shop Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f8e1f4;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 95%;
+      padding: 0.5rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff1493;
+    }
+    #loginMessage {
+      margin-top: 1rem;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo" onclick="navigate('home')">
-        <span class="logo-icon">🎂</span>
-        <span class="logo-text">Sweet Layers</span>
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#" onclick="navigate('home')" data-page="home" class="active">Home</a></li>
-        <li><a href="#" onclick="navigate('menu')" data-page="menu">Menu</a></li>
-        <li><a href="#" onclick="navigate('login')" data-page="login">login</a></li>
-        <li>
-          <a href="#" onclick="navigate('cart')" data-page="cart" class="cart-link">
-            Cart
-            <span class="cart-badge" id="cartBadge">0</span>
-          </a>
-        </li>
-      </ul>
-      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- ==================== login page ==================== -->
-
-  <section id="page-login" class="page">
-
-  <div class="page-header">
-    <div class="container">
-      <h1 class="page-title">Login</h1>
-      <p class="page-subtitle">Login to order your favorite cakes</p>
-    </div>
+  <div class="login-container">
+    <h2>Cake Shop Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required /><br/>
+      <input type="password" id="password" placeholder="Password" required /><br/>
+      <button type="submit">Login</button>
+    </form>
+    <div id="loginMessage"></div>
   </div>
 
-  <div class="container">
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
 
-    <div class="login-box">
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-      <form id="loginForm">
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-        <input type="text" id="username" placeholder="Username" required>
+      try {
+        const res = await fetch("http://localhost:5000/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
 
-        <input type="password" id="password" placeholder="Password" required>
+        const data = await res.json();
 
-        <button class="btn btn-primary" type="submit">Login</button>
+        if(data.success) {
+          loginMessage.style.color = "green";
+          loginMessage.textContent = "Login successful! Redirecting...";
+          // Redirect to menu or home page
+          setTimeout(() => {
+            window.location.href = "menu.html"; // change this to your menu page
+          }, 1000);
+        } else {
+          loginMessage.style.color = "red";
+          loginMessage.textContent = data.message;
+        }
 
-      </form>
-
-      <p id="loginMessage" class="login-message"></p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-  
-
-  <!-- ==================== HOME PAGE ==================== -->
-  <section id="page-home" class="page active">
-    <!-- Hero Section -->
-    <div class="hero">
-      <div class="hero-content">
-        <h1 class="hero-title">Handcrafted Cakes for Every Occasion</h1>
-        <p class="hero-subtitle">Made with premium ingredients, baked fresh daily, and designed to make your celebrations unforgettable.</p>
-        <button class="btn btn-primary btn-lg" onclick="navigate('menu')">Explore Our Menu</button>
-      </div>
-    </div>
-
-    <!-- Benefits Section -->
-    <div class="benefits-section">
-      <div class="container">
-        <div class="benefits-grid">
-          <div class="benefit-card">
-            <div class="benefit-icon">✨</div>
-            <h3>Premium Ingredients</h3>
-            <p>We source only the finest ingredients to ensure every bite is a delight.</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">🍰</div>
-            <h3>Fresh Daily</h3>
-            <p>Each cake is baked fresh every day, never frozen, always perfect.</p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">🎨</div>
-            <h3>Custom Designs</h3>
-            <p>From classic elegance to creative themes, we bring your vision to life.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Featured Cakes -->
-    <div class="featured-section">
-      <div class="container">
-        <h2 class="section-title">Our Popular Cakes</h2>
-        <p class="section-subtitle">Discover the crowd favorites that keep our customers coming back</p>
-        <div class="cakes-grid" id="featuredCakes"></div>
-        <div class="text-center" style="margin-top:2rem;">
-          <button class="btn btn-outline" onclick="navigate('menu')">View Full Menu</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== MENU PAGE ==================== -->
-  <section id="page-menu" class="page">
-    <div class="page-header">
-      <div class="container">
-        <h1 class="page-title">Our Menu</h1>
-        <p class="page-subtitle">Browse our collection of handcrafted cakes</p>
-      </div>
-    </div>
-    <div class="container">
-      <!-- Search & Filter -->
-      <div class="filter-bar">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Search cakes..." oninput="filterCakes()" />
-        </div>
-        <div class="category-filters" id="categoryFilters"></div>
-      </div>
-      <div class="cakes-grid" id="menuCakes"></div>
-      <div class="no-results" id="noResults" style="display:none;">
-        <p>No cakes found matching your search. Try a different term!</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== CAKE DETAIL PAGE ==================== -->
-  <section id="page-detail" class="page">
-    <div class="container">
-      <button class="btn-back" onclick="goBack()">← Back</button>
-      <div class="detail-layout" id="cakeDetail"></div>
-    </div>
-  </section>
-
-  <!-- ==================== CART PAGE ==================== -->
-  <section id="page-cart" class="page">
-    <div class="page-header">
-      <div class="container">
-        <h1 class="page-title">Your Cart</h1>
-      </div>
-    </div>
-    <div class="container">
-      <div id="cartContent"></div>
-    </div>
-  </section>
-
-  <!-- ==================== CHECKOUT PAGE ==================== -->
-  <section id="page-checkout" class="page">
-    <div class="page-header">
-      <div class="container">
-        <h1 class="page-title">Checkout</h1>
-      </div>
-    </div>
-    <div class="container">
-      <div class="checkout-layout" id="checkoutContent"></div>
-    </div>
-  </section>
-
-  <!-- ==================== SUCCESS PAGE ==================== -->
-  <section id="page-success" class="page">
-    <div class="container">
-      <div class="success-card">
-        <div class="success-icon">🎉</div>
-        <h1>Order Confirmed!</h1>
-        <p>Thank you for your order. We'll start preparing your delicious cakes right away!</p>
-        <p class="order-id" id="orderId"></p>
-        <button class="btn btn-primary" onclick="navigate('home')">Back to Home</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <span class="logo-icon">🎂</span>
-          <span class="logo-text">Sweet Layers</span>
-          <p>Handcrafted cakes made with love and premium ingredients since 2020.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Quick Links</h4>
-          <a href="#" onclick="navigate('home')">Home</a>
-          <a href="#" onclick="navigate('menu')">Menu</a>
-          <a href="#" onclick="navigate('cart')">Cart</a>
-        </div>
-        <div class="footer-contact">
-          <h4>Contact</h4>
-          <p>📍 123 Baker Street, Caketown</p>
-          <p>📞 (555) 123-4567</p>
-          <p>📧 hello@sweetlayers.com</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Sweet Layers. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+      } catch (err) {
+        loginMessage.style.color = "red";
+        loginMessage.textContent = "Server error. Try again.";
+      }
+    });
+  </script>
 </body>
 </html>
