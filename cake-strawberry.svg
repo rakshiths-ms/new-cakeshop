@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff3f7"/>
+      <stop offset="1" stop-color="#fef0e8"/>
+    </linearGradient>
+    <linearGradient id="cake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb3c7"/>
+      <stop offset="1" stop-color="#e86a8f"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffaf3"/>
+      <stop offset="1" stop-color="#f5e7d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g transform="translate(240 110)">
+    <rect x="0" y="0" rx="28" ry="28" width="720" height="580" fill="#ffffff" opacity="0.85"/>
+    <g transform="translate(130 110)">
+      <ellipse cx="230" cy="355" rx="260" ry="46" fill="#2d1b0e" opacity="0.08"/>
+      <rect x="0" y="300" width="460" height="95" rx="26" fill="url(#cake)"/>
+      <rect x="22" y="245" width="416" height="80" rx="22" fill="url(#cream)"/>
+      <rect x="0" y="195" width="460" height="85" rx="26" fill="url(#cake)"/>
+      <rect x="30" y="145" width="400" height="68" rx="20" fill="url(#cream)"/>
+      <rect x="0" y="105" width="460" height="70" rx="26" fill="url(#cake)"/>
+      <g transform="translate(55 55)">
+        <g>
+          <path d="M70 30 C55 18, 58 2, 74 6 C85 -10, 105 -8, 102 10 C118 2, 128 18, 114 30 C122 44, 108 58, 92 52 C82 64, 60 58, 70 44 C56 40, 56 22, 70 30 Z" fill="#ff3b6b"/>
+          <circle cx="78" cy="28" r="4" fill="#ffd5de"/>
+          <circle cx="98" cy="24" r="4" fill="#ffd5de"/>
+          <circle cx="90" cy="40" r="4" fill="#ffd5de"/>
+          <path d="M86 5 C90 14, 94 14, 98 5" stroke="#2d8f4e" stroke-width="6" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(300 10) scale(0.95)">
+          <path d="M70 30 C55 18, 58 2, 74 6 C85 -10, 105 -8, 102 10 C118 2, 128 18, 114 30 C122 44, 108 58, 92 52 C82 64, 60 58, 70 44 C56 40, 56 22, 70 30 Z" fill="#ff3b6b"/>
+          <circle cx="78" cy="28" r="4" fill="#ffd5de"/>
+          <circle cx="98" cy="24" r="4" fill="#ffd5de"/>
+          <circle cx="90" cy="40" r="4" fill="#ffd5de"/>
+          <path d="M86 5 C90 14, 94 14, 98 5" stroke="#2d8f4e" stroke-width="6" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+    <text x="360" y="520" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" fill="#2d1b0e" opacity="0.75">
+      Strawberry Cake
+    </text>
+  </g>
+</svg>

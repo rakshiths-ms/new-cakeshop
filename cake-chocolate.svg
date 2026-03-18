@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff3f7"/>
+      <stop offset="1" stop-color="#f8e8d0"/>
+    </linearGradient>
+    <linearGradient id="choc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a2e1f"/>
+      <stop offset="1" stop-color="#3b1f14"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffaf3"/>
+      <stop offset="1" stop-color="#f5e7d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g transform="translate(240 110)">
+    <rect x="0" y="0" rx="28" ry="28" width="720" height="580" fill="#ffffff" opacity="0.85"/>
+    <g transform="translate(130 110)">
+      <ellipse cx="230" cy="355" rx="260" ry="46" fill="#2d1b0e" opacity="0.08"/>
+      <rect x="0" y="300" width="460" height="95" rx="26" fill="url(#choc)"/>
+      <rect x="22" y="245" width="416" height="80" rx="22" fill="url(#cream)"/>
+      <rect x="0" y="195" width="460" height="85" rx="26" fill="url(#choc)"/>
+      <rect x="30" y="145" width="400" height="68" rx="20" fill="url(#cream)"/>
+      <rect x="0" y="105" width="460" height="70" rx="26" fill="url(#choc)"/>
+      <path d="M36 110 C86 70, 136 156, 186 110 C236 70, 286 156, 336 110 C386 70, 436 156, 486 110"
+            fill="none" stroke="#7a3f2b" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+      <g fill="#d4577b" opacity="0.9">
+        <circle cx="70" cy="92" r="10"/>
+        <circle cx="165" cy="78" r="9"/>
+        <circle cx="255" cy="90" r="10"/>
+        <circle cx="345" cy="76" r="9"/>
+        <circle cx="415" cy="92" r="10"/>
+      </g>
+    </g>
+    <text x="360" y="520" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" fill="#2d1b0e" opacity="0.75">
+      Chocolate Cake
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Shop Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f8e1f4;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 95%;
+      padding: 0.5rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff1493;
+    }
+    #loginMessage {
+      margin-top: 1rem;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Cake Shop Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required /><br/>
+      <input type="password" id="password" placeholder="Password" required /><br/>
+      <button type="submit">Login</button>
+    </form>
+    <div id="loginMessage"></div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch("http://13.60.105.205:5000/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if(data.success) {
+          loginMessage.style.color = "green";
+          loginMessage.textContent = "Login successful! Redirecting...";
+          // Redirect to menu or home page
+          setTimeout(() => {
+            window.location.href = "menu.html"; // change this to your menu page
+          }, 1000);
+        } else {
+          loginMessage.style.color = "red";
+          loginMessage.textContent = data.message;
+        }
+
+      } catch (err) {
+        loginMessage.style.color = "red";
+        loginMessage.textContent = "Server error. Try again.";
+      }
+    });
+  </script>
+</body>
+</html>
